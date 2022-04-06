@@ -1,6 +1,7 @@
 package dev.practice.order.domain.item.optionGroup;
 
 import com.google.common.collect.Lists;
+import dev.practice.order.domain.AbstractEntity;
 import dev.practice.order.domain.item.Item;
 import dev.practice.order.domain.item.option.ItemOption;
 import lombok.Builder;
@@ -17,8 +18,8 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter
-@Table(name = "item_option_group")
-public class ItemOptionGroup {
+@Table(name = "item_option_groups")
+public class ItemOptionGroup extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
