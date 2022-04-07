@@ -13,28 +13,14 @@ import javax.transaction.Transactional;
 public class OrderServiceImpl implements OrderService{
     private final OrderStore orderStore;
     private final ItemReader itemReader;
+    private final OrderItemSeriesFactory itemSeriesFactory;
 
     @Override
     @Transactional
     public String registerOrder(OrderCommand.RegisterOrder requestOrder) {
         Order order = orderStore.store(requestOrder.toEntity());
-
-        requestOrder.getOrderItemList().forEach(orderItemRequest -> {
-            var item = itemReader.getItemBy(orderItemRequest.getItemToken());
-            var initOrderItem = orderItemRequest.toEntity(order, item);
-            var orderItem = orderStore.store(initOrderItem);
-
-            orderItemRequest.getOrderItemOptionGroupList().forEach(orderItemOptionGroupRequest -> {
-                var initOrderItemOptionGroup = orderItemOptionGroupRequest.toEntity(orderItem);
-                var orderItemOptionGroup = orderStore.store(initOrderItemOptionGroup);
-
-                orderItemOptionGroupRequest.getOrderItemOptionList().forEach(orderItemOptionRequest -> {
-                    var initOrderItemOption = orderItemOptionRequest.toEntity(orderItemOptionGroup);
-                    orderStore.store(initOrderItemOption);
-                });
-            });
-
-        });
+        itemSeriesFactory.store(order, requestOrder);
+//
 
         return order.getOrderToken();
     }
