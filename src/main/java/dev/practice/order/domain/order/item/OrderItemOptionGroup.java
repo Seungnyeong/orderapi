@@ -1,6 +1,5 @@
 package dev.practice.order.domain.order.item;
 
-
 import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.domain.AbstractEntity;
@@ -17,7 +16,7 @@ import java.util.List;
 @Getter
 @Entity
 @NoArgsConstructor
-@Table( name = "order_item_option_groups")
+@Table(name = "order_item_option_groups")
 public class OrderItemOptionGroup extends AbstractEntity {
 
     @Id

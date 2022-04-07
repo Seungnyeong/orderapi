@@ -5,16 +5,16 @@ Content-Type: application/json
 {
   "userId": "12345",
   "payMethod": "NAVER_PAY",
-  "receiverName": "이희창",
+  "receiverName": "김승녕",
   "receiverPhone": "01000001234",
   "receiverZipcode": "12345",
-  "receiverAddress1": "서울시 강동구",
+  "receiverAddress1": "서울시 군자동",
   "receiverAddress2": "우리집",
   "etcMessage": "감사합니다",
   "orderItemList": [
     {
       "orderCount": 2,
-      "itemToken": "itm_XqbL4h1l5mz1mnMZ",
+      "itemToken": "itm_L529FQbSsjLIr2o0",
       "itemName": "티셔츠",
       "itemPrice": "30000",
       "orderItemOptionGroupList": [
@@ -44,7 +44,7 @@ Content-Type: application/json
     },
     {
       "orderCount": 1,
-      "itemToken": "itm_qCPGVzwvLVmCoZs6",
+      "itemToken": "itm_75psQpfL54cNNsj5",
       "itemName": "양말",
       "itemPrice": "10000",
       "orderItemOptionGroupList": [
@@ -80,11 +80,11 @@ POST http://localhost:8080/api/v1/orders/payment-order
 Content-Type: application/json
 
 {
-  "orderToken": "ord_lqAcdTqvORlU7ry3",
+  "orderToken": "ord_T21DKhF7dnlIlwMU",
   "payMethod": "NAVER_PAY",
   "amount": "72000",
   "orderDescription": "주문테스트"
 }
 
 ### 주문 조회
-GET http://localhost:8080/api/v1/orders/ord_lqAcdTqvORlU7ry3
+GET http://localhost:8080/api/v1/orders/ord_T21DKhF7dnlIlwMU

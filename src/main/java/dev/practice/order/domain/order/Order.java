@@ -4,6 +4,7 @@ import com.google.common.collect.Lists;
 import dev.practice.order.common.exception.IllegalStatusException;
 import dev.practice.order.common.exception.InvalidParamException;
 import dev.practice.order.common.util.TokenGenerator;
+import dev.practice.order.domain.AbstractEntity;
 import dev.practice.order.domain.order.fragment.DeliveryFragment;
 import dev.practice.order.domain.order.item.OrderItem;
 import lombok.*;
@@ -20,7 +21,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @Table(name = "orders")
-public class Order extends AbstractMethodError {
+public class Order extends AbstractEntity {
 
     private static final String ORDER_PREFIX = "ord_";
 
@@ -85,6 +86,17 @@ public class Order extends AbstractMethodError {
     public void orderComplete() {
         if (this.status != Status.INIT) throw new IllegalStatusException();
         this.status = Status.ORDER_COMPLETE;
+    }
+
+    public boolean isAlreadyPaymentComplete() {
+        switch (this.status) {
+            case ORDER_COMPLETE:
+            case DELIVERY_PREPARE:
+            case IN_DELIVERY:
+            case DELIVERY_COMPLETE:
+                return true;
+        }
+        return false;
     }
 
 }

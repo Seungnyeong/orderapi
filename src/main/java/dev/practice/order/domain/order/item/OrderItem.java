@@ -8,22 +8,20 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Slf4j
-@Table(name = "order_items")
+@Entity
 @Getter
 @NoArgsConstructor
-@Entity
+@Table(name = "order_items")
 public class OrderItem extends AbstractEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "order_id")
@@ -80,7 +78,6 @@ public class OrderItem extends AbstractEntity {
         this.itemPrice = itemPrice;
         this.deliveryStatus = DeliveryStatus.BEFORE_DELIVERY;
     }
-
 
     public Long calculateTotalAmount() {
         var itemOptionTotalAmount = orderItemOptionGroupList.stream()
