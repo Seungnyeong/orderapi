@@ -3,7 +3,7 @@ POST http://localhost:8080/api/v1/orders/init
 Content-Type: application/json
 
 {
-  "userId": "12345",
+  "userId": "123455",
   "payMethod": "NAVER_PAY",
   "receiverName": "김승녕",
   "receiverPhone": "01000001234",
